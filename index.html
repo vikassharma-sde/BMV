@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Valentine?</title>
   <style>
     body {
@@ -23,16 +23,13 @@
       width: 350px;
     }
 
-    h2 {
-      margin-bottom: 30px;
-    }
-
     button {
       padding: 12px 24px;
       border-radius: 20px;
       border: none;
       cursor: pointer;
       font-size: 16px;
+      margin: 10px;
     }
 
     #yes {
@@ -44,30 +41,45 @@
       background: #ccc;
       position: absolute;
     }
+
+    #yayImage {
+      display: none;
+      width: 100%;
+      margin-top: 20px;
+      border-radius: 12px;
+    }
   </style>
 </head>
 <body>
 
   <div class="card">
     <h2>Kajal will you be my valentine? 💖</h2>
-    <button id="yes" onclick="alert('Yayyy! 💕')">Yes</button>
+
+    <button id="yes">Yes</button>
     <button id="no">No</button>
+
+    <!-- Image shows after YES -->
+    <img id="yayImage" src="IMG_0477.jpg" alt="Yay ❤️">
   </div>
 
   <script>
     const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+    const yayImage = document.getElementById("yayImage");
     const card = document.querySelector(".card");
 
     noBtn.addEventListener("mouseenter", () => {
-      const cardRect = card.getBoundingClientRect();
-      const maxX = cardRect.width - noBtn.offsetWidth;
-      const maxY = cardRect.height - noBtn.offsetHeight;
+      const maxX = card.offsetWidth - noBtn.offsetWidth;
+      const maxY = card.offsetHeight - noBtn.offsetHeight;
 
-      const randomX = Math.random() * maxX;
-      const randomY = Math.random() * maxY;
+      noBtn.style.left = Math.random() * maxX + "px";
+      noBtn.style.top = Math.random() * maxY + "px";
+    });
 
-      noBtn.style.left = randomX + "px";
-      noBtn.style.top = randomY + "px";
+    yesBtn.addEventListener("click", () => {
+      yayImage.style.display = "block";
+      yesBtn.style.display = "none";
+      noBtn.style.display = "none";
     });
   </script>
 
